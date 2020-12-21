@@ -10,6 +10,10 @@ namespace tp6.Entidades
         string nombre;
         List<Cadete> listaCadetes;
 
+        public Cadeteria()
+        {
+        }
+
         public Cadeteria(string nombre)
         {
             Nombre = nombre;
