@@ -58,7 +58,7 @@ namespace tp6.Controllers
         }
 
         // GET: ClienteController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditCliente(int id)
         {
             RepoCliente repoCliente = new RepoCliente();
             Cliente Nuevo = new Cliente();

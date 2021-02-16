@@ -84,8 +84,9 @@ namespace tp6.Models
                 Cliente1.Id = Convert.ToInt32(reader["Id"]);
                 Cliente1.Nombre = reader["Nombre"].ToString();
                
-                reader.Close();
+                
             }
+            reader.Close();
             conexion.Close();
 
             return Cliente1;
@@ -102,10 +103,11 @@ namespace tp6.Models
             conexion.Open();
             var command = conexion.CreateCommand();
             command.CommandText = @"UPDATE Cliente
-                                    SET Nombre = @nombre, Telefono = @telefono                                        
+                                    SET Nombre = @nombre, Telefono = @telefono, direccion =@direccion                                        
                                     WHERE Id = @id";
             command.Parameters.AddWithValue("@nombre", Cliente1.Nombre);
-            
+            command.Parameters.AddWithValue("@telefono", Cliente1.Telefono);
+            command.Parameters.AddWithValue("@direccion", Cliente1.Direccion);
 
             command.ExecuteNonQuery();
             conexion.Close();
