@@ -72,7 +72,7 @@ namespace tp6.Models
             var conexion = new SQLiteConnection(cadena);
             conexion.Open();
             var command = conexion.CreateCommand();
-            string instruccion = @"SELECT Id, Nombre, Telefono 
+            string instruccion = @"SELECT Id, Nombre, Telefono, direccion 
                                    FROM Cliente
                                    Where  Id = @id";
             command.CommandText = instruccion;
@@ -83,7 +83,8 @@ namespace tp6.Models
             {
                 Cliente1.Id = Convert.ToInt32(reader["Id"]);
                 Cliente1.Nombre = reader["Nombre"].ToString();
-               
+                Cliente1.Telefono = reader["Telefono"].ToString();
+                Cliente1.Direccion = reader["direccion"].ToString();
                 
             }
             reader.Close();
@@ -103,11 +104,12 @@ namespace tp6.Models
             conexion.Open();
             var command = conexion.CreateCommand();
             command.CommandText = @"UPDATE Cliente
-                                    SET Nombre = @nombre, Telefono = @telefono, direccion =@direccion                                        
+                                    SET Nombre = @nombre, Telefono = @telefono, direccion = @direccion                                        
                                     WHERE Id = @id";
             command.Parameters.AddWithValue("@nombre", Cliente1.Nombre);
             command.Parameters.AddWithValue("@telefono", Cliente1.Telefono);
             command.Parameters.AddWithValue("@direccion", Cliente1.Direccion);
+            command.Parameters.AddWithValue("@id", Cliente1.Id);
 
             command.ExecuteNonQuery();
             conexion.Close();
