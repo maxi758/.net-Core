@@ -49,11 +49,13 @@ namespace tp6.Models
             conexion.Open();
             var command = conexion.CreateCommand();
             command.CommandText = @"INSERT INTO 
-                                    Cliente (Nombre) 
-                                    VALUES (@nombre, @telefono)";
+                                    Cliente (Nombre, telefono, direccion) 
+                                    VALUES (@nombre, @telefono, @direccion)";
 
             command.Parameters.AddWithValue("@nombre", Cliente1.Nombre);
-            
+            command.Parameters.AddWithValue("@telefono", Cliente1.Telefono);
+            command.Parameters.AddWithValue("@direccion", Cliente1.Direccion);
+
             command.ExecuteNonQuery();
             conexion.Close();
         }

@@ -53,7 +53,7 @@ namespace tp6.Models
                     var conexion = new SQLiteConnection(cadena);
                     conexion.Open();
                     var command = conexion.CreateCommand();
-                    command.CommandText = "Insert into cadete(nombre, direccion, telefono) values(@nombre,@direccion, @telefono) ";
+                    command.CommandText = "Insert into cadete(nombre, direccion, telefono, activo) values(@nombre,@direccion, @telefono, 1) ";
                     command.Parameters.AddWithValue("@nombre", nuevo.Nombre);
                     command.Parameters.AddWithValue("@direccion", nuevo.Direccion);
                     command.Parameters.AddWithValue("@telefono", nuevo.Telefono);
