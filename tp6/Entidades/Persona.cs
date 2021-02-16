@@ -12,6 +12,7 @@ namespace tp6.Entidades
         String nombre;
         String direccion;
         String telefono;
+        int activo;
 
         public Persona()
         {
@@ -24,12 +25,13 @@ namespace tp6.Entidades
             this.nombre = nombre;
             this.direccion = direccion;
             this.telefono = telefono;
+            this.Activo = 1;
         }
 
-        public int Id { get => id;  }
+        public int Id { get => id; set => id = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Direccion { get => direccion; set => direccion = value; }
         public string Telefono { get => telefono; set => telefono = value; }
-       
+        public int Activo { get => activo; set => activo = value; }
     }
 }

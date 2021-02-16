@@ -11,41 +11,41 @@ using tp6.Models;
 
 namespace tp6.Controllers
 {
-    public class CadeteController : Controller
+    public class ClienteController : Controller
     {
-        static List<Cadete> listaCadetes = new List<Cadete>();
-        // GET: CadeteController
+        static List<Cliente> listaClientes = new List<Cliente>();
+        // GET: ClienteController
         public ActionResult Index()
         {
-            RepoCadetes repoCadete = new RepoCadetes();
-            var listaCadetes = repoCadete.GetAll();
-            return View(listaCadetes);
+            RepoCliente repoCliente = new RepoCliente();
+            var listaClientes = repoCliente.GetAll();
+            return View(listaClientes);
         }
 
-        // GET: CadeteController/Details/5
+        // GET: ClienteController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: CadeteController/Create
-        public ActionResult AltaCadete()
+        // GET: ClienteController/Create
+        public ActionResult AltaCliente()
         {
-            return View(new Cadete());
+            return View(new Cliente());
         }
 
-        // POST: CadeteController/Create
+        // POST: ClienteController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CrearCadete(Cadete nuevo)
+        public ActionResult CrearCliente(Cliente nuevo)
         {
 
             var mensaje = " ";
             if (ModelState.IsValid)
             {
-                RepoCadetes repoCadete = new RepoCadetes();
-                repoCadete.AltaCadete(nuevo);
-                listaCadetes.Add(nuevo);
+                RepoCliente repoCliente = new RepoCliente();
+                repoCliente.AltaCliente(nuevo);
+                listaClientes.Add(nuevo);
                 mensaje = "todo ok";
             }
             else
@@ -57,24 +57,24 @@ namespace tp6.Controllers
 
         }
 
-        // GET: CadeteController/Edit/5
+        // GET: ClienteController/Edit/5
         public ActionResult Edit(int id)
         {
-            RepoCadetes repoCadete = new RepoCadetes();
-            Cadete Nuevo = new Cadete();
-            Nuevo = repoCadete.GetCadete(id);
+            RepoCliente repoCliente = new RepoCliente();
+            Cliente Nuevo = new Cliente();
+            Nuevo = repoCliente.GetCliente(id);
             return View(Nuevo);
         }
 
-        // POST: CadeteController/Edit/5
+        // POST: ClienteController/Edit/5
         
-        public ActionResult Modificar(Cadete nuevo)
+        public ActionResult Modificar(Cliente nuevo)
         {
             if (ModelState.IsValid)
             {
-                RepoCadetes repoCadete = new RepoCadetes();
-                repoCadete.ModificarCadete(nuevo);
-                listaCadetes.Add(nuevo);
+                RepoCliente repoCliente = new RepoCliente();
+                repoCliente.ModificarCliente(nuevo);
+                listaClientes.Add(nuevo);
                 
             }
             else
@@ -86,28 +86,28 @@ namespace tp6.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: CadeteController/Delete/5
+        // GET: ClienteController/Delete/5
        /*public ActionResult Delete(int id)
         {
             return View();
         }*/
 
-        // POST: CadeteController/Delete/5
+        // POST: ClienteController/Delete/5
         //[HttpPost]
        // [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             try
             {
-                RepoCadetes repoCadete = new RepoCadetes();
-                repoCadete.EliminarUsuario(id);
+                RepoCliente repoCliente = new RepoCliente();
+                repoCliente.EliminarCliente(id);
                 return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
-            listaCadetes.RemoveAll(t => t.Id == id);
+           // listaClientes.RemoveAll(t => t.Id == id);
             return View();
         }
     }

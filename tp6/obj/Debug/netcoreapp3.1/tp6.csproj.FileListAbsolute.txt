@@ -116,3 +116,12 @@ E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\bin\Debug\netcoreapp3.1\runtime
 E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cadete\AltaCadete.cshtml.g.cs
 E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cadete\Index.cshtml.g.cs
 E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cadete\Edit.cshtml.g.cs
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cadete\Delete.cshtml.g.cs
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\Index.cshtml.g.cs
