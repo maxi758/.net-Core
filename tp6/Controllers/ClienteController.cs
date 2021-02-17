@@ -47,6 +47,7 @@ namespace tp6.Controllers
                 repoCliente.AltaCliente(nuevo);
                 listaClientes.Add(nuevo);
                 mensaje = "todo ok";
+                
             }
             else
             {
@@ -95,13 +96,13 @@ namespace tp6.Controllers
         // POST: ClienteController/Delete/5
         //[HttpPost]
        // [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        public ActionResult DeleteCliente(int id)
         {
             try
             {
                 RepoCliente repoCliente = new RepoCliente();
                 repoCliente.EliminarCliente(id);
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
             }
             catch
             {

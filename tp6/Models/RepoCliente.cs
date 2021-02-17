@@ -125,8 +125,7 @@ namespace tp6.Models
              var conexion = new SQLiteConnection(cadena);
              conexion.Open();
              var command = conexion.CreateCommand();
-             command.CommandText = @"UPDATE Cliente
-                                 SET Activo = 0
+             command.CommandText = @"DELETE FROM Cliente
                                  WHERE Id = @id;";
              command.Parameters.AddWithValue("@Id", id);
              command.ExecuteNonQuery();

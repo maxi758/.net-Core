@@ -127,3 +127,4 @@ E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\V
 E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\Index.cshtml.g.cs
 E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\AltaCliente.cshtml.g.cs
 E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\EditCliente.cshtml.g.cs
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\DeleteCliente.cshtml.g.cs
