@@ -94,22 +94,31 @@ namespace tp6.Controllers
         }*/
 
         // POST: ClienteController/Delete/5
-        //[HttpPost]
+       
        // [ValidateAntiForgeryToken]
         public ActionResult DeleteCliente(int id)
+        {
+            RepoCliente repoCliente = new RepoCliente();
+            Cliente Nuevo = new Cliente();
+            Nuevo = repoCliente.GetCliente(id);
+            return View(Nuevo);
+        }
+
+        [HttpPost]
+        public ActionResult Borrar(int id)
         {
             try
             {
                 RepoCliente repoCliente = new RepoCliente();
                 repoCliente.EliminarCliente(id);
-                //return RedirectToAction("Index");
+              
             }
             catch
             {
-                return View();
+                throw;
             }
-           // listaClientes.RemoveAll(t => t.Id == id);
-            return View();
+            // listaClientes.RemoveAll(t => t.Id == id);
+            return RedirectToAction("Index");
         }
     }
 }
