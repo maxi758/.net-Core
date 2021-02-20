@@ -1,0 +1,69 @@
+﻿@model IEnumerable<tp6.Entidades.Pedido>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="AltaPedido">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cadete.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observacion1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cadete.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observacion1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoPedido)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.NumeroPedido }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.NumeroPedido })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

@@ -21,16 +21,16 @@ namespace tp6.Models
             var conexion = new SQLiteConnection(cadena);
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = "SELECT   Id,  Nombre, Direccion, Telefono FROM Cliente";
+            command.CommandText = "SELECT  IdCliente,  NombreCliente, Direccion, Telefono FROM Cliente";
 ;
             var reader = command.ExecuteReader();
             while (reader.Read())
             {
                 var Cliente1 = new Cliente();
-                Cliente1.Id = Convert.ToInt32(reader["Id"]);
+                Cliente1.Id = Convert.ToInt32(reader["IdCliente"]);
                 Cliente1.Direccion = reader["Direccion"].ToString();
                 Cliente1.Telefono = reader["Telefono"].ToString();
-                Cliente1.Nombre = reader["Nombre"].ToString();
+                Cliente1.Nombre = reader["NombreCliente"].ToString();
                 listaDeCliente.Add(Cliente1);
             }
             reader.Close();
@@ -49,7 +49,7 @@ namespace tp6.Models
             conexion.Open();
             var command = conexion.CreateCommand();
             command.CommandText = @"INSERT INTO 
-                                    Cliente (Nombre, telefono, direccion) 
+                                    Cliente (NombreCliente, telefono, direccion) 
                                     VALUES (@nombre, @telefono, @direccion)";
 
             command.Parameters.AddWithValue("@nombre", Cliente1.Nombre);
@@ -72,17 +72,17 @@ namespace tp6.Models
             var conexion = new SQLiteConnection(cadena);
             conexion.Open();
             var command = conexion.CreateCommand();
-            string instruccion = @"SELECT Id, Nombre, Telefono, direccion 
+            string instruccion = @"SELECT IdCliente, NombreCliente, Telefono, direccion 
                                    FROM Cliente
-                                   Where  Id = @id";
+                                   Where  IdCliente = @id";
             command.CommandText = instruccion;
             command.Parameters.AddWithValue("@id", id);
             var reader = command.ExecuteReader();
 
             while (reader.Read())
             {
-                Cliente1.Id = Convert.ToInt32(reader["Id"]);
-                Cliente1.Nombre = reader["Nombre"].ToString();
+                Cliente1.Id = Convert.ToInt32(reader["IdCliente"]);
+                Cliente1.Nombre = reader["NombreCliente"].ToString();
                 Cliente1.Telefono = reader["Telefono"].ToString();
                 Cliente1.Direccion = reader["direccion"].ToString();
                 
@@ -104,8 +104,8 @@ namespace tp6.Models
             conexion.Open();
             var command = conexion.CreateCommand();
             command.CommandText = @"UPDATE Cliente
-                                    SET Nombre = @nombre, Telefono = @telefono, direccion = @direccion                                        
-                                    WHERE Id = @id";
+                                    SET NombreCliente = @nombre, Telefono = @telefono, direccion = @direccion                                        
+                                    WHERE IdCliente = @id";
             command.Parameters.AddWithValue("@nombre", Cliente1.Nombre);
             command.Parameters.AddWithValue("@telefono", Cliente1.Telefono);
             command.Parameters.AddWithValue("@direccion", Cliente1.Direccion);
@@ -126,7 +126,7 @@ namespace tp6.Models
              conexion.Open();
              var command = conexion.CreateCommand();
              command.CommandText = @"DELETE FROM Cliente
-                                 WHERE Id = @id;";
+                                 WHERE IdCliente = @id;";
              command.Parameters.AddWithValue("@Id", id);
              command.ExecuteNonQuery();
              conexion.Close();

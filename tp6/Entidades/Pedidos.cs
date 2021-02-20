@@ -7,32 +7,35 @@ namespace tp6.Entidades
 {
     public enum Estado
     {
-        Recibido = 0, Realizandose, Entregado, Desconocido
+        Recibido = 1, Realizandose, Entregado, Desconocido
     }
     
     public enum TipoPedido
     {
-        Express,
+        Express = 1,
         Delicado,
         Ecologico,
     }
-    public class Pedidos
+    public class Pedido
     {
+        static int aux = 0;
         int numeroPedido;
         String Observacion;
         Cliente cliente;
+        Cadete cadete;
         Estado estadoPedido;
         TipoPedido tipo;
         Boolean cupon;
         double costoPedido;
 
-        public Pedidos()
+        public Pedido()
         {
+            this.NumeroPedido = aux++;
         }
 
-        public Pedidos(int numeroPedido, string observacion, Cliente cliente, Estado estadoPedido, TipoPedido tipo, bool cupon, double costoPedido)
+        public Pedido(string observacion, Cliente cliente, Cadete cadete, Estado estadoPedido, TipoPedido tipo, bool cupon, double costoPedido)
         {
-            this.NumeroPedido = numeroPedido;
+            this.NumeroPedido = aux++;
             Observacion1 = observacion;
             this.Cliente = cliente;
             this.EstadoPedido = estadoPedido;
@@ -48,5 +51,6 @@ namespace tp6.Entidades
         public TipoPedido Tipo { get => tipo; set => tipo = value; }
         public bool Cupon { get => cupon; set => cupon = value; }
         public double CostoPedido { get => costoPedido; set => costoPedido = value; }
+        public Cadete Cadete { get => cadete; set => cadete = value; }
     }
 }

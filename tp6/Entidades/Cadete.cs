@@ -11,6 +11,6 @@ namespace tp6.Entidades
     }
     public class Cadete : Persona
     {
-        List<Pedidos> listaPedidos;
+        List<Pedido> listaPedidos;
     }
 }

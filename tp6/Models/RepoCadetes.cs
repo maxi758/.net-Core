@@ -23,14 +23,14 @@ namespace tp6.Models
                     conexion.Open();
                     var command = conexion.CreateCommand();
                    
-                    command.CommandText = "SELECT id, nombre, direccion, telefono, activo FROM cadete; ";
+                    command.CommandText = "SELECT idCadete, NombreCadete, direccion, telefono, activo FROM cadete; ";
                     SQLiteDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
                         var cadete1 = new Cadete();
-                        cadete1.Id = Convert.ToInt32(reader["id"]);
+                        cadete1.Id = Convert.ToInt32(reader["idCadete"]);
                         cadete1.Direccion = reader["direccion"].ToString();
-                        cadete1.Nombre = reader["Nombre"].ToString();
+                        cadete1.Nombre = reader["NombreCadete"].ToString();
                         cadete1.Telefono = reader["Telefono"].ToString();
                         cadete1.Activo =Convert.ToInt32(reader["Activo"]);
                         listaDeCadetes.Add(cadete1);
@@ -53,7 +53,7 @@ namespace tp6.Models
                     var conexion = new SQLiteConnection(cadena);
                     conexion.Open();
                     var command = conexion.CreateCommand();
-                    command.CommandText = "Insert into cadete(nombre, direccion, telefono, activo) values(@nombre,@direccion, @telefono, 1) ";
+                    command.CommandText = "Insert into cadete(nombreCadete, direccion, telefono, activo) values(@nombre,@direccion, @telefono) ";
                     command.Parameters.AddWithValue("@nombre", nuevo.Nombre);
                     command.Parameters.AddWithValue("@direccion", nuevo.Direccion);
                     command.Parameters.AddWithValue("@telefono", nuevo.Telefono);
@@ -77,7 +77,7 @@ namespace tp6.Models
                 conexion.Open();
                 var command = conexion.CreateCommand();
                
-                command.CommandText = "SELECT id, nombre, direccion, telefono FROM cadete Where  id = @id;";
+                command.CommandText = "SELECT idCadete, nombreCadete, direccion, telefono FROM cadete Where  idCadete = @id;";
                 command.Parameters.AddWithValue("@id", id);
                 var reader = command.ExecuteReader();
 
@@ -104,7 +104,7 @@ namespace tp6.Models
                 var conexion = new SQLiteConnection(cadena);
                 conexion.Open();
                 var command = conexion.CreateCommand();
-                command.CommandText = "UPDATE cadete SET nombre = @nombre, telefono = @telefono  , direccion = @direccion, activo = @activo  WHERE Id = @id";
+                command.CommandText = "UPDATE cadete SET nombreCadete = @nombre, telefono = @telefono  , direccion = @direccion, activo = @activo  WHERE IdCadete = @id";
                 command.Parameters.AddWithValue("@nombre", cadete1.Nombre);
                 command.Parameters.AddWithValue("@telefono", cadete1.Telefono);
                 command.Parameters.AddWithValue("@id", cadete1.Id);
@@ -124,7 +124,7 @@ namespace tp6.Models
                 var command = conexion.CreateCommand();
                 command.CommandText = @"UPDATE cadete
                                     SET Activo = 0
-                                    WHERE Id = @id;";
+                                    WHERE IdCadete = @id;";
                 command.Parameters.AddWithValue("@Id", id);
                 command.ExecuteNonQuery();
                 conexion.Close();
