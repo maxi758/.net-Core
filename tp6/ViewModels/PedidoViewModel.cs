@@ -17,6 +17,8 @@ namespace tp6.ViewModels
         public string Observacion { get; set; }
 
         public Cliente Cliente { get; set; }
+
+        public Cadete Cadete { get; set; }
         public List<Cliente> listaClientes { get; set; }
     }
 }

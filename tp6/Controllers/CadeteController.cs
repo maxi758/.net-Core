@@ -8,18 +8,28 @@ using System.Threading.Tasks;
 using tp6.Entidades;
 using System.IO;
 using tp6.Models;
+using AutoMapper;
+using tp6.ViewModels;
 
 namespace tp6.Controllers
 {
     public class CadeteController : Controller
     {
-        static List<Cadete> listaCadetes = new List<Cadete>();
-        // GET: CadeteController
+        //static List<Cadete> listaCadetes = new List<Cadete>();
+       
+        private readonly IMapper _mapper;
+
+        public CadeteController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+         // GET: CadeteController
         public ActionResult Index()
         {
             RepoCadetes repoCadete = new RepoCadetes();
             var listaCadetes = repoCadete.GetAll();
-            return View(listaCadetes);
+            List<CadeteViewModel> CadeteVM = _mapper.Map<List<CadeteViewModel>>(listaCadetes);
+            return View(CadeteVM);
         }
 
         // GET: CadeteController/Details/5
@@ -31,21 +41,21 @@ namespace tp6.Controllers
         // GET: CadeteController/Create
         public ActionResult AltaCadete()
         {
-            return View(new Cadete());
+            return View(new CadeteViewModel());
         }
 
         // POST: CadeteController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CrearCadete(Cadete nuevo)
+        public ActionResult CrearCadete(CadeteViewModel nuevo)
         {
-
+            Cadete CadeteDTO = _mapper.Map<Cadete>(nuevo);
             var mensaje = " ";
             if (ModelState.IsValid)
             {
                 RepoCadetes repoCadete = new RepoCadetes();
-                repoCadete.AltaCadete(nuevo);
-                listaCadetes.Add(nuevo);
+                repoCadete.AltaCadete(CadeteDTO);
+                //listaCadetes.Add(nuevo);
                 mensaje = "todo ok";
             }
             else
@@ -61,20 +71,21 @@ namespace tp6.Controllers
         public ActionResult Edit(int id)
         {
             RepoCadetes repoCadete = new RepoCadetes();
-            Cadete Nuevo = new Cadete();
-            Nuevo = repoCadete.GetCadete(id);
+            CadeteViewModel Nuevo = _mapper.Map<CadeteViewModel>(repoCadete.GetCadete(id));
+            
             return View(Nuevo);
         }
 
         // POST: CadeteController/Edit/5
         
-        public ActionResult Modificar(Cadete nuevo)
+        public ActionResult Modificar(CadeteViewModel nuevo)
         {
+            Cadete CadeteDTO = _mapper.Map<Cadete>(nuevo);
             if (ModelState.IsValid)
             {
                 RepoCadetes repoCadete = new RepoCadetes();
-                repoCadete.ModificarCadete(nuevo);
-                listaCadetes.Add(nuevo);
+                repoCadete.ModificarCadete(CadeteDTO);
+                //listaCadetes.Add(nuevo);
                 
             }
             else
@@ -107,7 +118,7 @@ namespace tp6.Controllers
             {
                 return View();
             }
-            listaCadetes.RemoveAll(t => t.Id == id);
+            //listaCadetes.RemoveAll(t => t.Id == id);
             return View();
         }
     }

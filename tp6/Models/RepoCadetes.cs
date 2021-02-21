@@ -53,7 +53,7 @@ namespace tp6.Models
                     var conexion = new SQLiteConnection(cadena);
                     conexion.Open();
                     var command = conexion.CreateCommand();
-                    command.CommandText = "Insert into cadete(nombreCadete, direccion, telefono, activo) values(@nombre,@direccion, @telefono) ";
+                    command.CommandText = "Insert into cadete(nombreCadete, direccion, telefono, activo) values(@nombre,@direccion, @telefono, 1) ";
                     command.Parameters.AddWithValue("@nombre", nuevo.Nombre);
                     command.Parameters.AddWithValue("@direccion", nuevo.Direccion);
                     command.Parameters.AddWithValue("@telefono", nuevo.Telefono);
@@ -83,8 +83,8 @@ namespace tp6.Models
 
                 while (reader.Read())
                 {
-                    cadete1.Id = Convert.ToInt32(reader["Id"]);
-                    cadete1.Nombre = reader["Nombre"].ToString();
+                    cadete1.Id = Convert.ToInt32(reader["IdCadete"]);
+                    cadete1.Nombre = reader["NombreCadete"].ToString();
                     cadete1.Telefono = reader["Telefono"].ToString();
                     cadete1.Direccion = reader["direccion"].ToString();
                 } 

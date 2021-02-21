@@ -8,18 +8,28 @@ using System.Threading.Tasks;
 using tp6.Entidades;
 using System.IO;
 using tp6.Models;
+using AutoMapper;
+using tp6.ViewModels;
 
 namespace tp6.Controllers
 {
     public class PedidoController : Controller
     {
-        static List<Pedido> listaPedidos = new List<Pedido>();
+        //static List<Pedido> listaPedidos = new List<Pedido>();
+        private readonly IMapper _mapper;
+
+        public PedidoController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         // GET: PedidoController
         public ActionResult Index()
         {
             RepoPedidos repoPedido = new RepoPedidos();
             var listaPedidos = repoPedido.GetAll();
-            return View(listaPedidos);
+            List<PedidoViewModel> PedidoVM = _mapper.Map<List<PedidoViewModel>>(listaPedidos);
+            return View(PedidoVM);
         }
 
         // GET: PedidoController/Details/5
@@ -45,7 +55,7 @@ namespace tp6.Controllers
             {
                 RepoPedidos repoPedido = new RepoPedidos();
                 repoPedido.AltaPedido(nuevo);
-                listaPedidos.Add(nuevo);
+                //listaPedidos.Add(nuevo);
                 mensaje = "todo ok";
             }
             else
@@ -74,7 +84,7 @@ namespace tp6.Controllers
             {
                 RepoPedidos repoPedido = new RepoPedidos();
                 repoPedido.ModificarPedido(nuevo);
-                listaPedidos.Add(nuevo);
+                //listaPedidos.Add(nuevo);
                 
             }
             else
@@ -107,7 +117,7 @@ namespace tp6.Controllers
             {
                 return View();
             }
-            listaPedidos.RemoveAll(t => t.NumeroPedido == id);
+            //listaPedidos.RemoveAll(t => t.NumeroPedido == id);
             return View();
         }
     }

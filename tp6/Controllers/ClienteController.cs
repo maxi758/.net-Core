@@ -111,8 +111,7 @@ namespace tp6.Controllers
         public ActionResult DeleteCliente(int id)
         {
             RepoCliente repoCliente = new RepoCliente();
-            Cliente Nuevo = new Cliente();
-            Nuevo = repoCliente.GetCliente(id);
+            ClienteViewModel Nuevo = _mapper.Map<ClienteViewModel>(repoCliente.GetCliente(id));
             return View(Nuevo);
         }
 

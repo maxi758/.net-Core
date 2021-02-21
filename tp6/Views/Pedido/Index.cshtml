@@ -1,4 +1,4 @@
-﻿@model IEnumerable<tp6.Entidades.Pedido>
+﻿@model IEnumerable<tp6.ViewModels.PedidoViewModel>
 
 @{
     Layout = null;
@@ -28,7 +28,7 @@
                 @Html.DisplayNameFor(model => model.Cadete.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Observacion1)
+                @Html.DisplayNameFor(model => model.Observacion)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EstadoPedido)
@@ -51,7 +51,7 @@
                 @Html.DisplayFor(modelItem => item.Cadete.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Observacion1)
+                @Html.DisplayFor(modelItem => item.Observacion)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EstadoPedido)
