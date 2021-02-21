@@ -18,12 +18,12 @@ namespace tp6.Models
           public List<Pedido> GetAll()
            {
                 List<Pedido> listaDePedidos = new List<Pedido>();
-                string cadena = "Data Source = " + Path.Combine(Directory.GetCurrentDirectory(), "datos\\Pedidoria.db");
+                string cadena = "Data Source = " + Path.Combine(Directory.GetCurrentDirectory(), "datos\\cadeteria.db");
                 using (var conexion = new SQLiteConnection(cadena)) { 
                     conexion.Open();
                     var command = conexion.CreateCommand();
                    
-                    command.CommandText = "SELECT idpedido, nombrecliente, nombrecadete, observacion, EstadoPedido, TipoPedido FROM Pedido INNER JOIN Cadete using (idCadete) INNER JOIN using(idCliente); ";
+                    command.CommandText = "SELECT idpedido, nombrecliente, nombrecadete, observacion, EstadoPedido, TipoPedido FROM Pedido INNER JOIN Cadete using (idCadete) INNER JOIN Cliente using(idCliente); ";
                     SQLiteDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -50,7 +50,7 @@ namespace tp6.Models
             {
                 try
                 {
-                    string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "datos\\Pedidoria.db");
+                    string cadena = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "datos\\cadeteria.db");
                     var conexion = new SQLiteConnection(cadena);
                     conexion.Open();
                     var command = conexion.CreateCommand();
@@ -75,12 +75,12 @@ namespace tp6.Models
             public Pedido GetPedido(int id)
             {
                 var Pedido1 = new Pedido();
-                string cadena = "Data Source = " + Path.Combine(Directory.GetCurrentDirectory(), "datos\\Pedidoria.db");
+                string cadena = "Data Source = " + Path.Combine(Directory.GetCurrentDirectory(), "datos\\cadeteria.db");
                 var conexion = new SQLiteConnection(cadena);
                 conexion.Open();
                 var command = conexion.CreateCommand();
                
-                command.CommandText = "SELECT idpedido, nombrecliente, nombrecadete, observacion, EstadoPedido, TipoPedido FROM Pedido INNER JOIN Cadete using (idCadete) INNER JOIN using(idCliente) WHERE idPedido = @id;";
+                command.CommandText = "SELECT idpedido, nombrecliente, nombrecadete, observacion, EstadoPedido, TipoPedido FROM Pedido INNER JOIN Cadete using (idCadete) INNER JOIN Cliente using(idCliente) WHERE idPedido = @id;";
                 command.Parameters.AddWithValue("@id", id);
                 var reader = command.ExecuteReader();
 
@@ -106,7 +106,7 @@ namespace tp6.Models
             /// <param name="usuario"></param>
             public void ModificarPedido(Pedido Pedido1)
             {
-                string cadena = "Data Source = " + Path.Combine(Directory.GetCurrentDirectory(), "datos\\Pedidoria.db");
+                string cadena = "Data Source = " + Path.Combine(Directory.GetCurrentDirectory(), "datos\\cadeteria.db");
                 var conexion = new SQLiteConnection(cadena);
                 conexion.Open();
                 var command = conexion.CreateCommand();
@@ -124,7 +124,7 @@ namespace tp6.Models
            
             public void EliminarPedido(int id)
             {
-                string cadena = "Data Source = " + Path.Combine(Directory.GetCurrentDirectory(), "datos\\Pedidoria.db");
+                string cadena = "Data Source = " + Path.Combine(Directory.GetCurrentDirectory(), "datos\\cadeteria.db");
                 var conexion = new SQLiteConnection(cadena);
                 conexion.Open();
                 var command = conexion.CreateCommand();
