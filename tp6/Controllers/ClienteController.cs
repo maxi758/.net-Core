@@ -15,7 +15,7 @@ namespace tp6.Controllers
 {
     public class ClienteController : Controller
     {
-        static List<Cliente> listaClientes = new List<Cliente>();
+       // static List<ClienteViewModel> listaClientes = new List<ClienteViewModel>();
         private readonly IMapper _mapper;
         public ClienteController(IMapper mapper)
         {
@@ -27,9 +27,9 @@ namespace tp6.Controllers
         {
             RepoCliente repoCliente = new RepoCliente();
             var listaClientes = repoCliente.GetAll();
-            List<ClienteViewModel> ClienteVM = _mapper.Map<List<ClienteViewModel>>(listaClientes);
+            List<ClienteViewModel> ListClienteVM = _mapper.Map<List<ClienteViewModel>>(listaClientes);
             
-            return View(listaClientes);
+            return View(ListClienteVM);
         }
 
         // GET: ClienteController/Details/5
@@ -41,21 +41,22 @@ namespace tp6.Controllers
         // GET: ClienteController/Create
         public ActionResult AltaCliente()
         {
-            return View(new Cliente());
+            return View(new ClienteViewModel());
         }
 
         // POST: ClienteController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CrearCliente(Cliente nuevo)
+        public ActionResult CrearCliente(ClienteViewModel nuevo)
         {
+            Cliente ClienteDTO = _mapper.Map<Cliente>(nuevo);
 
             var mensaje = " ";
             if (ModelState.IsValid)
             {
                 RepoCliente repoCliente = new RepoCliente();
-                repoCliente.AltaCliente(nuevo);
-                listaClientes.Add(nuevo);
+                repoCliente.AltaCliente(ClienteDTO);
+                //listaClientes.Add(nuevo);
                 mensaje = "todo ok";
                 
             }
@@ -72,20 +73,21 @@ namespace tp6.Controllers
         public ActionResult EditCliente(int id)
         {
             RepoCliente repoCliente = new RepoCliente();
-            Cliente Nuevo = new Cliente();
-            Nuevo = repoCliente.GetCliente(id);
+            ClienteViewModel Nuevo = _mapper.Map<ClienteViewModel>(repoCliente.GetCliente(id));
+            
             return View(Nuevo);
         }
 
         // POST: ClienteController/Edit/5
         
-        public ActionResult Modificar(Cliente nuevo)
+        public ActionResult Modificar(ClienteViewModel nuevo)
         {
+            Cliente ClienteDTO = _mapper.Map<Cliente>(nuevo);
             if (ModelState.IsValid)
             {
                 RepoCliente repoCliente = new RepoCliente();
-                repoCliente.ModificarCliente(nuevo);
-                listaClientes.Add(nuevo);
+                repoCliente.ModificarCliente(ClienteDTO);
+                //listaClientes.Add(nuevo);
                 
             }
             else
