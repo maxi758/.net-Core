@@ -8,17 +8,27 @@ using System.Threading.Tasks;
 using tp6.Entidades;
 using System.IO;
 using tp6.Models;
+using tp6.ViewModels;
+using AutoMapper;
 
 namespace tp6.Controllers
 {
     public class ClienteController : Controller
     {
         static List<Cliente> listaClientes = new List<Cliente>();
+        private readonly IMapper _mapper;
+        public ClienteController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         // GET: ClienteController
         public ActionResult Index()
         {
             RepoCliente repoCliente = new RepoCliente();
             var listaClientes = repoCliente.GetAll();
+            List<ClienteViewModel> ClienteVM = _mapper.Map<List<ClienteViewModel>>(listaClientes);
+            
             return View(listaClientes);
         }
 
