@@ -128,3 +128,9 @@ E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\V
 E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\AltaCliente.cshtml.g.cs
 E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\EditCliente.cshtml.g.cs
 E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\DeleteCliente.cshtml.g.cs
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Pedido\AltaPedido.cshtml.g.cs
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Pedido\Delete.cshtml.g.cs
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Pedido\Edit.cshtml.g.cs
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\obj\Debug\netcoreapp3.1\Razor\Views\Pedido\Index.cshtml.g.cs
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\bin\Debug\netcoreapp3.1\AutoMapper.dll
+E:\Users\maxi-\Documents\repo\tpnro6-maxi758\tp6\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

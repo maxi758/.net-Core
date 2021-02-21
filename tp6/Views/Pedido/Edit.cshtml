@@ -1,5 +1,5 @@
-﻿@model tp6.Entidades.Pedido
-@using 
+﻿@model tp6.ViewModels.PedidoViewModel
+
 @{
     Layout = null;
 }
@@ -24,31 +24,31 @@
                     <input asp-for="NumeroPedido" class="form-control" />
                     @*<span asp-validation-for="Id" class="text-danger"></span>*@
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <label asp-for="Cliente" class="control-label"></label>
-                    @*<input asp-for="Nombre" type="text" class="form-control" value="@Model.Nombre" />*@
+                    <input asp-for="Nombre" type="text" class="form-control" value="@Model.Nombre" />
                     @{Model.Cliente = new Cliente(); }
                     <select asp-for="Cliente.Id">
-                        @foreach (var Cliente in Model.Cliente)
+                        @foreach (var Cliente in Model.listaClientes)
                         {
-                            <option value="@Cliente.IdCliente">@Cliente.Nombre</option>
+                            <option value="@Cliente.Id">@Cliente.Nombre</option>
                         }
                     </select>
 
-                </div>
+                </div>*@
                 <div class="form-group">
-                    <label asp-for="Direccion" class="control-label"></label>
-                    <input asp-for="Direccion" class="form-control" value="@Model.Direccion" />
+                    <label asp-for="Observacion" class="control-label"></label>
+                    <input asp-for="Observacion" class="form-control" value="@Model.Observacion" />
 
                 </div>
                 <div class="form-group">
-                    <label asp-for="Telefono" class="control-label"></label>
-                    <input asp-for="Telefono" class="form-control" value="@Model.Telefono" />
+                    <label asp-for="EstadoPedido" class="control-label"></label>
+                    <input asp-for="EstadoPedido" class="form-control" value="@Model.EstadoPedido" />
 
                 </div>
                 <div class="form-group">
-                    <label asp-for="Activo" class="control-label"></label>
-                    <input asp-for="Activo" class="form-control" value="@Model.Activo" />
+                    <label asp-for="Tipo" class="control-label"></label>
+                    <input asp-for="Tipo" class="form-control" value="@Model.Tipo" />
 
                 </div>
                 <div class="form-group">
