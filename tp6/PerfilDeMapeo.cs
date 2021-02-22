@@ -19,6 +19,8 @@ namespace tp6
             CreateMap<Pedido, PedidoViewModel>().ReverseMap();
 
             CreateMap<Pedido, ModificarPedidoViewModel>().ReverseMap();
+
+            CreateMap<Pedido, PedidoPorCadeteViewModel>().ReverseMap();
         }
     }
 }

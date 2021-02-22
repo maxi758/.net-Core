@@ -1,0 +1,65 @@
+﻿@model IEnumerable<tp6.ViewModels.PedidoPorCadeteViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />   
+    <title>Listado de Pedidos de Cadete</title>
+</head>
+<body>
+
+<table class="table-dark" cellspacing="1" border="1" >
+    <thead>
+        <tr class="border-dark">
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente.Nombre)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Observacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoPedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="col-10">
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroPedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+            </td>
+            
+            <td colspan="1">
+                @Html.DisplayFor(modelItem => item.Observacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoPedido)
+            </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </th>
+            <td >
+                @Html.ActionLink("Index", "Edit") 
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

@@ -121,5 +121,12 @@ namespace tp6.Controllers
             //listaCadetes.RemoveAll(t => t.Id == id);
             return View();
         }
+        public ActionResult ListadoPedidos(int id)
+        {
+            RepoCadetes repoCadete = new RepoCadetes();
+            var listaCadetes = repoCadete.GetPedidosDeCadete(id);
+            List<PedidoPorCadeteViewModel> CadeteVM = _mapper.Map<List<PedidoPorCadeteViewModel>>(listaCadetes);
+            return View(CadeteVM);
+        }
     }
 }

@@ -83,6 +83,7 @@ namespace tp6.Models
 
                 while (reader.Read())
                 {
+                    
                     cadete1.Id = Convert.ToInt32(reader["IdCadete"]);
                     cadete1.Nombre = reader["NombreCadete"].ToString();
                     cadete1.Telefono = reader["Telefono"].ToString();
@@ -93,12 +94,40 @@ namespace tp6.Models
 
                 return cadete1;
             }
+            public List<Pedido> GetPedidosDeCadete(int id)
+            {
+                
+                List<Pedido> listaDePedidos = new List<Pedido>();
+                string cadena = "Data Source = " + Path.Combine(Directory.GetCurrentDirectory(), "datos\\cadeteria.db");
+                var conexion = new SQLiteConnection(cadena);
+                conexion.Open();
+                var command = conexion.CreateCommand();
 
-            /// <summary>
-            /// Permite Modificar un usuario dado en Una base de Datos
-            /// </summary>
-            /// <param name="usuario"></param>
-            public void ModificarCadete(Cadete cadete1)
+                command.CommandText = "SELECT idpedido, nombreCliente, observacion, EstadoPedido, TipoPedido FROM Pedido INNER JOIN Cadete using(IdCadete) INNER JOIN Cliente using(idCliente) WHERE idCadete = @id;";
+                command.Parameters.AddWithValue("@id", id);
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var Pedido1 = new Pedido();
+                    Pedido1.Cliente = new Cliente();
+                    Pedido1.NumeroPedido = Convert.ToInt32(reader["idpedido"]);
+                    Pedido1.Observacion = reader["Observacion"].ToString();
+                    Pedido1.EstadoPedido = (Estado)Convert.ToInt32(reader["EstadoPedido"]);
+                    Pedido1.Tipo = (TipoPedido)Convert.ToInt32(reader["TipoPedido"]);
+                    Pedido1.Cliente.Nombre = reader["NombreCliente"].ToString();
+                    listaDePedidos.Add(Pedido1);
+                }
+                reader.Close();
+                conexion.Close();
+
+                return listaDePedidos;
+            }
+        /// <summary>
+        /// Permite Modificar un usuario dado en Una base de Datos
+        /// </summary>
+        /// <param name="usuario"></param>
+        public void ModificarCadete(Cadete cadete1)
             {
                 string cadena = "Data Source = " + Path.Combine(Directory.GetCurrentDirectory(), "datos\\cadeteria.db");
                 var conexion = new SQLiteConnection(cadena);
