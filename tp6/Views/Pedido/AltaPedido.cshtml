@@ -15,73 +15,71 @@
 
 <h4>Pedido</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CrearPedido" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="NumeroPedido" class="control-label" ></label>
-                    <input asp-for="NumeroPedido" class="form-control" value="@Model.NumeroPedido" type="hidden" />
-
-                </div>
-                <div class="form-check-inline">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="CrearPedido" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="Cliente" class="control-label"></label>
-                        @*<input asp-for="Cliente" type="text" class="form-control" value="@Model.Cliente" />*@
-
-                        <select asp-for="Cliente.Id">
-                            @foreach (var Cliente in Model.listadoDeClientes)
-                            {
-                                <option value="@Cliente.Id">@Cliente.Nombre</option>
-                            }
-                        </select>
+                        <label asp-for="NumeroPedido" class="control-label" ></label>
+                        <input asp-for="NumeroPedido" class="form-control" value="@Model.NumeroPedido" type="hidden" />
 
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Cadete" class="control-label"></label>
-                        @*<input asp-for="Cadete" type="text" class="form-control" value="@Model.Cadete" />*@
+                    <div class="form-check-inline">
+                        <div class="form-group">
+                            <label asp-for="Cliente" class="control-label"></label>
+                            @*<input asp-for="Cliente" type="text" class="form-control" value="@Model.Cliente" />*@
 
-                        <select asp-for="Cadete.Id">
-                            @foreach (var Cadete in Model.listadoDeCadetes)
-                            {
-                                <option value="@Cadete.Id">@Cadete.Nombre</option>
-                            }
-                        </select>
-                    </div>
-                </div> 
-                <div class="form-check-input">
-                    <div class="form-group">
-                        <label asp-for="Observacion" class="control-label"></label>
-                        <div>
-                            <textarea asp-for="Observacion" rows="10" cols="50" class="text-black-50" placeholder="Observaciones"></textarea>
+                            <select asp-for="Cliente.Id">
+                                @foreach (var Cliente in Model.listadoDeClientes)
+                                {
+                                    <option value="@Cliente.Id">@Cliente.Nombre</option>
+                                }
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Cadete" class="control-label"></label>
+                            @*<input asp-for="Cadete" type="text" class="form-control" value="@Model.Cadete" />*@
+
+                            <select asp-for="Cadete.Id">
+                                @foreach (var Cadete in Model.listadoDeCadetes)
+                                {
+                                    <option value="@Cadete.Id">@Cadete.Nombre</option>
+                                }
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="bg-transparent">
+                        <div class="form-group">
+                            <label asp-for="Observacion" class="control-label"></label>
+                            <div>
+                                <textarea asp-for="Observacion" rows="10" cols="50" class="text-black-50" placeholder="Observaciones"></textarea>
+                            </div>
+
                         </div>
 
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="EstadoPedido" class="control-label"></label>
-                        <input asp-for="EstadoPedido" class="form-control" value="@Model.EstadoPedido" />
-                        <span asp-validation-for="EstadoPedido" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Tipo" class="control-label"></label>
-                        <input asp-for="Tipo" class="form-control" value="@Model.Tipo" />
-                        <span asp-validation-for="Tipo" class="text-danger"></span>
+                        <div class="form-group">
+                            <label asp-for="EstadoPedido" class="control-label"></label>
+                            <input asp-for="EstadoPedido" class="form-control" value="@Model.EstadoPedido" />
+                            <span asp-validation-for="EstadoPedido" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Tipo" class="control-label"></label>
+                            <input asp-for="Tipo" class="form-control" value="@Model.Tipo" />
+                            <span asp-validation-for="Tipo" class="text-danger"></span>
+                        </div>
+                        
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Crear" class="btn btn-primary" />
                     </div>
-                </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
 </body>
 </html>
