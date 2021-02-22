@@ -10,6 +10,7 @@ using System.IO;
 using tp6.Models;
 using AutoMapper;
 using tp6.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace tp6.Controllers
 {
@@ -24,7 +25,7 @@ namespace tp6.Controllers
         }
 
         // GET: PedidoController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             RepoPedidos repoPedido = new RepoPedidos();
             var listaPedidos = repoPedido.GetAll();
@@ -33,42 +34,50 @@ namespace tp6.Controllers
         }
 
         // GET: PedidoController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             return View();
         }
 
         // GET: PedidoController/Create
-        public ActionResult AltaPedido()
+        public IActionResult AltaPedido()
         {
-            return View(new Pedido());
+            var repoCliente = new RepoCliente();
+            var repoCadete = new RepoCadetes();
+         
+            var PedidoViewModel = new PedidoViewModel
+            {
+                
+                listadoDeCadetes = _mapper.Map<List<CadeteViewModel>>(repoCadete.GetAll()),
+                listadoDeClientes = _mapper.Map<List<ClienteViewModel>>(repoCliente.GetAll())
+            };
+
+            return View(PedidoViewModel);
         }
 
         // POST: PedidoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CrearPedido(Pedido nuevo)
+        public IActionResult CrearPedido(PedidoViewModel nuevo)
         {
-
-            var mensaje = " ";
-            if (ModelState.IsValid)
+            try
             {
+                Pedido PedidoDTO = new Pedido();
+                PedidoDTO = _mapper.Map<Pedido>(nuevo);            
                 RepoPedidos repoPedido = new RepoPedidos();
-                repoPedido.AltaPedido(nuevo);
+                repoPedido.AltaPedido(PedidoDTO);
                 //listaPedidos.Add(nuevo);
-                mensaje = "todo ok";
             }
-            else
+            catch (Exception ex)
             {
-                mensaje = "hubo una falla"; 
-            }
-
-            return Content(mensaje);
-
+                ex.Message.ToString();
+            }                        
+           
+            return Redirect("../Home/Index");
         }
 
         // GET: PedidoController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             RepoPedidos repoPedido = new RepoPedidos();
             Pedido Nuevo = new Pedido();
@@ -78,7 +87,7 @@ namespace tp6.Controllers
 
         // POST: PedidoController/Edit/5
         
-        public ActionResult Modificar(Pedido nuevo)
+        public IActionResult Modificar(Pedido nuevo)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +114,7 @@ namespace tp6.Controllers
         // POST: PedidoController/Delete/5
         //[HttpPost]
        // [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             try
             {

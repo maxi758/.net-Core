@@ -15,9 +15,9 @@
 <p>
     <a asp-action="AltaPedido">Create New</a>
 </p>
-<table class="table">
+<table class="embed-responsive-16by9" cellspacing="1.5" border="1">
     <thead>
-        <tr>
+        <tr class="border-dark">
             <th>
                 @Html.DisplayNameFor(model => model.NumeroPedido)
             </th>
@@ -56,6 +56,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EstadoPedido)
             </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </th>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.NumeroPedido }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |

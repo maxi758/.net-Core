@@ -20,27 +20,39 @@
         <form asp-action="CrearPedido" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NumeroPedido" class="control-label"></label>
-                <input asp-for="NumeroPedido" class="form-control" />
-                <span asp-validation-for="NumeroPedido" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-            <label asp-for="Cliente" class="control-label"></label>
-            <input asp-for="Cliente" class="form-control" value="@Model.Cliente"/>
-            <span asp-validation-for="Cliente" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="Cliente" class="control-label"></label>
-                <input asp-for="Cliente" type="text" class="form-control" value="@Model.Cliente" />
-                @{Model.Cliente = new Cliente(); }
-                <select asp-for="Cliente.Id">
-                    @foreach (var Cliente in Model.listaClientes)
-                    {
-                        <option value="@Cliente.Id">@Cliente.Nombre</option>
-                    }
-                </select>
+                <label asp-for="NumeroPedido" class="control-label" ></label>
+                <input asp-for="NumeroPedido" class="form-control" value="@Model.NumeroPedido" type="hidden" />
 
             </div>
+            @*<div class="form-group">
+        <label asp-for="Cliente" class="control-label"></label>
+        <input asp-for="Cliente" class="form-control" value="@Model.Cliente"/>
+        <span asp-validation-for="Cliente" class="text-danger"></span>
+        </div>*@
+        <div class="form-group">
+            <label asp-for="Cliente" class="control-label"></label>
+            @*<input asp-for="Cliente" type="text" class="form-control" value="@Model.Cliente" />*@
+
+            <select asp-for="Cliente.Id">
+                @foreach (var Cliente in Model.listadoDeClientes)
+                {
+                    <option value="@Cliente.Id">@Cliente.Nombre</option>
+                }
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="Cadete" class="control-label"></label>
+            @*<input asp-for="Cadete" type="text" class="form-control" value="@Model.Cadete" />*@
+
+            <select asp-for="Cadete.Id">
+                @foreach (var Cadete in Model.listadoDeCadetes)
+                {
+                    <option value="@Cadete.Id">@Cadete.Nombre</option>
+                }
+            </select>
+
+        </div>
             <div class="form-group">
                 <label asp-for="EstadoPedido" class="control-label"></label>
                 <input asp-for="EstadoPedido" class="form-control" value="@Model.EstadoPedido" />

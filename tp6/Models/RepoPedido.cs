@@ -28,8 +28,11 @@ namespace tp6.Models
                     while (reader.Read())
                     {
                         var Pedido1 = new Pedido();
+                        Pedido1.Cliente = new Cliente();
+                        Pedido1.Cadete = new Cadete();
                         Pedido1.NumeroPedido = Convert.ToInt32(reader["idpedido"]);
                         Pedido1.Observacion1 = reader["Observacion"].ToString();
+                        
                         Pedido1.Cadete.Nombre = reader["NombreCadete"].ToString();
                         Pedido1.Cliente.Nombre = reader["NombreCliente"].ToString();
                         Pedido1.EstadoPedido = (Estado)Convert.ToInt32(reader["EstadoPedido"]);
