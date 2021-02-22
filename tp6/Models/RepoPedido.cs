@@ -78,21 +78,22 @@ namespace tp6.Models
             public Pedido GetPedido(int id)
             {
                 var Pedido1 = new Pedido();
+                
                 string cadena = "Data Source = " + Path.Combine(Directory.GetCurrentDirectory(), "datos\\cadeteria.db");
                 var conexion = new SQLiteConnection(cadena);
                 conexion.Open();
                 var command = conexion.CreateCommand();
                
-                command.CommandText = "SELECT idpedido, nombrecliente, nombrecadete, observacion, EstadoPedido, TipoPedido FROM Pedido INNER JOIN Cadete using (idCadete) INNER JOIN Cliente using(idCliente) WHERE idPedido = @id;";
+                command.CommandText = "SELECT idpedido, observacion, EstadoPedido, TipoPedido FROM Pedido  WHERE idPedido = @id;";
                 command.Parameters.AddWithValue("@id", id);
                 var reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
+                    
                     Pedido1.NumeroPedido = Convert.ToInt32(reader["idpedido"]);
                     Pedido1.Observacion = reader["Observacion"].ToString();
-                    Pedido1.Cadete.Nombre = reader["NombreCadete"].ToString();
-                    Pedido1.Cliente.Nombre = reader["NombreCliente"].ToString();
+                    
                     Pedido1.EstadoPedido = (Estado)Convert.ToInt32(reader["EstadoPedido"]);
                     Pedido1.Tipo = (TipoPedido)Convert.ToInt32(reader["TipoPedido"]);
               
@@ -107,21 +108,20 @@ namespace tp6.Models
             /// Permite Modificar un usuario dado en Una base de Datos
             /// </summary>
             /// <param name="usuario"></param>
-            public void ModificarPedido(Pedido Pedido1)
+            public void ModificarPedido(Pedido Pedido)
             {
                 string cadena = "Data Source = " + Path.Combine(Directory.GetCurrentDirectory(), "datos\\cadeteria.db");
                 var conexion = new SQLiteConnection(cadena);
                 conexion.Open();
                 var command = conexion.CreateCommand();
-                command.CommandText = "UPDATE Pedido SET IdCliente = @idcli, IdCadete = @idcad, observacion = @observ  , EstadoPedido = @estado, Tipo = @tipo  WHERE IdPedido = @id";
-                command.Parameters.AddWithValue("@idcli", Pedido1.Cliente.Id);
-                command.Parameters.AddWithValue("@idcad", Pedido1.Cadete.Id);
-                command.Parameters.AddWithValue("@observ", Pedido1.Observacion);
-                command.Parameters.AddWithValue("@EstadoPedido", Pedido1.EstadoPedido);
-                command.Parameters.AddWithValue("@TipoPedido", Pedido1.Tipo);
+                command.CommandText = "UPDATE Pedido SET observacion = @observ ,EstadoPedido = @estado, TipoPedido = @tipoPedido  WHERE IdPedido = @id";
+                command.Parameters.AddWithValue("@id", Pedido.NumeroPedido);
+                command.Parameters.AddWithValue("@observ", Pedido.Observacion);
+                command.Parameters.AddWithValue("@Estado", Pedido.EstadoPedido);
+                command.Parameters.AddWithValue("@TipoPedido", Pedido.Tipo);
 
-            command.ExecuteNonQuery();
-            conexion.Close();
+                command.ExecuteNonQuery();
+                conexion.Close();
             }
 
            
@@ -129,10 +129,9 @@ namespace tp6.Models
             {
                 string cadena = "Data Source = " + Path.Combine(Directory.GetCurrentDirectory(), "datos\\cadeteria.db");
                 var conexion = new SQLiteConnection(cadena);
-                conexion.Open();
+                conexion.Open();              
                 var command = conexion.CreateCommand();
-                command.CommandText = @"DELETE Pedido                                    
-                                    WHERE IdPedido = @id;";
+                command.CommandText = "DELETE FROM Pedido WHERE IdPedido = @id;";
                 command.Parameters.AddWithValue("@Id", id);
                 command.ExecuteNonQuery();
                 conexion.Close();

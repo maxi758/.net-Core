@@ -78,29 +78,23 @@ namespace tp6.Controllers
         // GET: PedidoController/Edit/5
         public IActionResult Edit(int id)
         {
-            RepoPedidos repoPedido = new RepoPedidos();
-            Pedido Nuevo = new Pedido();
-            Nuevo = repoPedido.GetPedido(id);
-            return View(Nuevo);
+            /*RepoPedidos repoPedido = new RepoPedidos();
+            ModificarPedidoViewModel Nuevo = _mapper.Map<ModificarPedidoViewModel>(repoPedido.GetPedido(id));*/
+             
+            return View(new ModificarPedidoViewModel {NumeroPedido = id });
         }
 
         // POST: PedidoController/Edit/5
-        
-        public IActionResult Modificar(Pedido nuevo)
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Modificar(ModificarPedidoViewModel nuevo)
         {
-            if (ModelState.IsValid)
-            {
-                RepoPedidos repoPedido = new RepoPedidos();
-                repoPedido.ModificarPedido(nuevo);
-                //listaPedidos.Add(nuevo);
-                
-            }
-            else
-            {
-                Console.WriteLine ("hubo una falla");
-            }
-
-
+            Pedido PedidoDTO = _mapper.Map<Pedido>(nuevo);            
+         
+            RepoPedidos repoPedido = new RepoPedidos();
+            repoPedido.ModificarPedido(PedidoDTO);
+                          
             return RedirectToAction("Index");
         }
 
@@ -111,22 +105,23 @@ namespace tp6.Controllers
         }*/
 
         // POST: PedidoController/Delete/5
-        //[HttpPost]
-       // [ValidateAntiForgeryToken]
+        
         public IActionResult Delete(int id)
         {
-            try
-            {
+           
                 RepoPedidos repoPedido = new RepoPedidos();
-                repoPedido.EliminarPedido(id);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-            //listaPedidos.RemoveAll(t => t.NumeroPedido == id);
-            return View();
+                ModificarPedidoViewModel Nuevo = _mapper.Map<ModificarPedidoViewModel>(repoPedido.GetPedido(id));
+                return View(Nuevo);              
+           
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult BorrarPedido(int NumeroPedido)
+        {
+            RepoPedidos repoPedido = new RepoPedidos();
+            repoPedido.EliminarPedido(NumeroPedido);               
+            
+            return RedirectToAction("Index");
         }
     }
 }

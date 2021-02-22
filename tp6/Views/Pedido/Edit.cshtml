@@ -1,4 +1,4 @@
-﻿@model tp6.ViewModels.PedidoViewModel
+﻿@model tp6.ViewModels.ModificarPedidoViewModel
 
 @{
     Layout = null;
@@ -21,7 +21,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="NumeroPedido" class="control-label"></label>
-                    <input asp-for="NumeroPedido" class="form-control" />
+                    <input asp-for="NumeroPedido" class="form-control" readonly/>
                     @*<span asp-validation-for="Id" class="text-danger"></span>*@
                 </div>
                 @*<div class="form-group">
@@ -38,17 +38,27 @@
                 </div>*@
                 <div class="form-group">
                     <label asp-for="Observacion" class="control-label"></label>
-                    <input asp-for="Observacion" class="form-control" value="@Model.Observacion" />
+                    <div>
+                        <textarea asp-for="Observacion" rows="10" cols="50" class="text-black-50" ></textarea>
+                    </div>
 
                 </div>
                 <div class="form-group">
                     <label asp-for="EstadoPedido" class="control-label"></label>
-                    <input asp-for="EstadoPedido" class="form-control" value="@Model.EstadoPedido" />
-
+                    <select asp-for="EstadoPedido">
+                        <option value="1">Recibido</option>
+                        <option value="2">Realizandose</option>
+                        <option value="3">Entregado</option>
+                        <option value="4">Desconocido</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label asp-for="Tipo" class="control-label"></label>
-                    <input asp-for="Tipo" class="form-control" value="@Model.Tipo" />
+                    <select asp-for="Tipo">
+                        <option value="1">Delicado</option>
+                        <option value="2">Express</option>
+                        <option value="2">Ecologico</option>
+                    </select>
 
                 </div>
                 <div class="form-group">
