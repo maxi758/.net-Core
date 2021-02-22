@@ -19,53 +19,59 @@
     <div class="col-md-4">
         <form asp-action="CrearPedido" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="NumeroPedido" class="control-label" ></label>
-                <input asp-for="NumeroPedido" class="form-control" value="@Model.NumeroPedido" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="NumeroPedido" class="control-label" ></label>
+                    <input asp-for="NumeroPedido" class="form-control" value="@Model.NumeroPedido" type="hidden" />
 
-            </div>
-            @*<div class="form-group">
-        <label asp-for="Cliente" class="control-label"></label>
-        <input asp-for="Cliente" class="form-control" value="@Model.Cliente"/>
-        <span asp-validation-for="Cliente" class="text-danger"></span>
-        </div>*@
-        <div class="form-group">
-            <label asp-for="Cliente" class="control-label"></label>
-            @*<input asp-for="Cliente" type="text" class="form-control" value="@Model.Cliente" />*@
+                </div>
+                <div class="form-check-inline">
+                    <div class="form-group">
+                        <label asp-for="Cliente" class="control-label"></label>
+                        @*<input asp-for="Cliente" type="text" class="form-control" value="@Model.Cliente" />*@
 
-            <select asp-for="Cliente.Id">
-                @foreach (var Cliente in Model.listadoDeClientes)
-                {
-                    <option value="@Cliente.Id">@Cliente.Nombre</option>
-                }
-            </select>
+                        <select asp-for="Cliente.Id">
+                            @foreach (var Cliente in Model.listadoDeClientes)
+                            {
+                                <option value="@Cliente.Id">@Cliente.Nombre</option>
+                            }
+                        </select>
 
-        </div>
-        <div class="form-group">
-            <label asp-for="Cadete" class="control-label"></label>
-            @*<input asp-for="Cadete" type="text" class="form-control" value="@Model.Cadete" />*@
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Cadete" class="control-label"></label>
+                        @*<input asp-for="Cadete" type="text" class="form-control" value="@Model.Cadete" />*@
 
-            <select asp-for="Cadete.Id">
-                @foreach (var Cadete in Model.listadoDeCadetes)
-                {
-                    <option value="@Cadete.Id">@Cadete.Nombre</option>
-                }
-            </select>
+                        <select asp-for="Cadete.Id">
+                            @foreach (var Cadete in Model.listadoDeCadetes)
+                            {
+                                <option value="@Cadete.Id">@Cadete.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </div> 
+                <div class="form-check-input">
+                    <div class="form-group">
+                        <label asp-for="Observacion" class="control-label"></label>
+                        <div>
+                            <textarea asp-for="Observacion" rows="10" cols="50" class="text-black-50" placeholder="Observaciones"></textarea>
+                        </div>
 
-        </div>
-            <div class="form-group">
-                <label asp-for="EstadoPedido" class="control-label"></label>
-                <input asp-for="EstadoPedido" class="form-control" value="@Model.EstadoPedido" />
-                <span asp-validation-for="EstadoPedido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tipo" class="control-label"></label>
-                <input asp-for="Tipo" class="form-control" value="@Model.Tipo" />
-                <span asp-validation-for="Tipo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
-            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="EstadoPedido" class="control-label"></label>
+                        <input asp-for="EstadoPedido" class="form-control" value="@Model.EstadoPedido" />
+                        <span asp-validation-for="EstadoPedido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Tipo" class="control-label"></label>
+                        <input asp-for="Tipo" class="form-control" value="@Model.Tipo" />
+                        <span asp-validation-for="Tipo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Crear" class="btn btn-primary" />
+                    </div>
+                </div>
         </form>
     </div>
 </div>

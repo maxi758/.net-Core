@@ -25,7 +25,7 @@ namespace tp6.ViewModels
         public TipoPedido Tipo { get; set; }
         public Estado EstadoPedido { get; set; }
         [Required]
-        [StringLength(140, MinimumLength = 10)]
+        [StringLength(140)]
         public string Observacion { get; set; }
 
         public Cliente Cliente { get; set; }

@@ -20,7 +20,7 @@ namespace tp6.Entidades
     {
         static int aux = 0;
         int numeroPedido;
-        String Observacion;
+        String observacion;
         Cliente cliente;
         Cadete cadete;
         Estado estadoPedido;
@@ -36,7 +36,7 @@ namespace tp6.Entidades
         public Pedido(string observacion, Cliente cliente, Cadete cadete, Estado estadoPedido, TipoPedido tipo, bool cupon, double costoPedido)
         {
             this.NumeroPedido = aux++;
-            Observacion1 = observacion;
+            this.Observacion = observacion;
             this.Cliente = cliente;
             this.EstadoPedido = estadoPedido;
             this.Tipo = tipo;
@@ -45,7 +45,7 @@ namespace tp6.Entidades
         }
 
         public int NumeroPedido { get => numeroPedido; set => numeroPedido = value; }
-        public string Observacion1 { get => Observacion; set => Observacion = value; }
+        public string Observacion { get => observacion; set => observacion = value; }
         public Cliente Cliente { get => cliente; set => cliente = value; }
         public Estado EstadoPedido { get => estadoPedido; set => estadoPedido = value; }
         public TipoPedido Tipo { get => tipo; set => tipo = value; }

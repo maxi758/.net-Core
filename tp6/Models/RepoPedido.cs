@@ -31,7 +31,7 @@ namespace tp6.Models
                         Pedido1.Cliente = new Cliente();
                         Pedido1.Cadete = new Cadete();
                         Pedido1.NumeroPedido = Convert.ToInt32(reader["idpedido"]);
-                        Pedido1.Observacion1 = reader["Observacion"].ToString();
+                        Pedido1.Observacion = reader["Observacion"].ToString();
                         
                         Pedido1.Cadete.Nombre = reader["NombreCadete"].ToString();
                         Pedido1.Cliente.Nombre = reader["NombreCliente"].ToString();
@@ -60,7 +60,7 @@ namespace tp6.Models
                     command.CommandText = "Insert into Pedido(idcliente, idcadete, observacion, EstadoPedido, TipoPedido) values(@idcli, @idcad, @observ, @EstadoPedido, @TipoPedido) ";
                     command.Parameters.AddWithValue("@idcli", nuevo.Cliente.Id);
                     command.Parameters.AddWithValue("@idcad", nuevo.Cadete.Id);
-                    command.Parameters.AddWithValue("@observ", nuevo.Observacion1);
+                    command.Parameters.AddWithValue("@observ", nuevo.Observacion);
                     command.Parameters.AddWithValue("@EstadoPedido", nuevo.EstadoPedido);
                     command.Parameters.AddWithValue("@TipoPedido", nuevo.Tipo);
                     command.ExecuteNonQuery();
@@ -90,7 +90,7 @@ namespace tp6.Models
                 while (reader.Read())
                 {
                     Pedido1.NumeroPedido = Convert.ToInt32(reader["idpedido"]);
-                    Pedido1.Observacion1 = reader["Observacion"].ToString();
+                    Pedido1.Observacion = reader["Observacion"].ToString();
                     Pedido1.Cadete.Nombre = reader["NombreCadete"].ToString();
                     Pedido1.Cliente.Nombre = reader["NombreCliente"].ToString();
                     Pedido1.EstadoPedido = (Estado)Convert.ToInt32(reader["EstadoPedido"]);
@@ -116,7 +116,7 @@ namespace tp6.Models
                 command.CommandText = "UPDATE Pedido SET IdCliente = @idcli, IdCadete = @idcad, observacion = @observ  , EstadoPedido = @estado, Tipo = @tipo  WHERE IdPedido = @id";
                 command.Parameters.AddWithValue("@idcli", Pedido1.Cliente.Id);
                 command.Parameters.AddWithValue("@idcad", Pedido1.Cadete.Id);
-                command.Parameters.AddWithValue("@observ", Pedido1.Observacion1);
+                command.Parameters.AddWithValue("@observ", Pedido1.Observacion);
                 command.Parameters.AddWithValue("@EstadoPedido", Pedido1.EstadoPedido);
                 command.Parameters.AddWithValue("@TipoPedido", Pedido1.Tipo);
 

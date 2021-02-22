@@ -62,8 +62,7 @@ namespace tp6.Controllers
         {
             try
             {
-                Pedido PedidoDTO = new Pedido();
-                PedidoDTO = _mapper.Map<Pedido>(nuevo);            
+                Pedido PedidoDTO = _mapper.Map<Pedido>(nuevo);            
                 RepoPedidos repoPedido = new RepoPedidos();
                 repoPedido.AltaPedido(PedidoDTO);
                 //listaPedidos.Add(nuevo);
