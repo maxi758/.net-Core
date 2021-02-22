@@ -9,13 +9,15 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
     <title>Index</title>
 </head>
 <body>
 <p>
     <a asp-action="AltaPedido">Create New</a>
 </p>
-<table class="embed-responsive-16by9" cellspacing="1.5" border="1">
+<table class="table-dark" cellspacing="1" border="1" >
     <thead>
         <tr class="border-dark">
             <th>
@@ -59,7 +61,7 @@
             <th>
                 @Html.DisplayFor(modelItem => item.Tipo)
             </th>
-            <td>
+            <td >
                 @Html.ActionLink("Edit", "Edit", new { id = item.NumeroPedido }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.NumeroPedido })
